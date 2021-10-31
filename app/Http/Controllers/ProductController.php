@@ -68,12 +68,6 @@ class ProductController extends Controller
             $input = $request->input();
             unset($input['_token']);
             $destination_path = "storage/uploads/product/";
-
-            if(!File::isDirectory($destination_path)){
-
-                File::makeDirectory($path, 0777, true, true);
-            }
-
             $file = $request->file('video');
             $file_name = time().rand().".".$file->getClientOriginalExtension();
             $file->move($destination_path,$file_name);
@@ -152,11 +146,6 @@ class ProductController extends Controller
         {
 
             $destination_path = "storage/uploads/product/";
-            if(!File::isDirectory($destination_path)){
-
-                File::makeDirectory($destination_path, 0777, true, true);
-            }
-
             $exists_path = "storage/uploads/product/".$product->video;
             if (file_exists($exists_path))
             {

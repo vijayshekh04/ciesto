@@ -59,10 +59,7 @@ class ShopController extends Controller
             $input = $request->input();
             unset($input['_token']);
             $destination_path = "storage/uploads/shop/";
-            if(!File::isDirectory($destination_path)){
-
-                File::makeDirectory($destination_path, 0777, true, true);
-            }
+           
             $file = $request->file('image');
             $file_name = time().rand().".".$file->getClientOriginalExtension();
             $file->move($destination_path,$file_name);
@@ -130,10 +127,7 @@ class ShopController extends Controller
                 "file"=>"mimes:jpeg,jpg,png",
             ]);
             $destination_path = "storage/uploads/shop/";
-            if(!File::isDirectory($destination_path)){
-
-                File::makeDirectory($destination_path, 0777, true, true);
-            }
+           
             $exists_path = "storage/uploads/shop/".$shop->image;
             if ($shop->image != "no-image.png")
             {
